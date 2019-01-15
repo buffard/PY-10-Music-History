@@ -29,13 +29,49 @@ LEFT JOIN Album a, Artist ar
 ON s.AlbumId = a.AlbumId and s.artistId = ar.artistId
 WHERE s.artistId = 28
 
--- 6. Write a SELECT statement to display how many songs exist for each album. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
-SELECT COUNT()
+-- ***Kimmys in class solution/notes***
+Select a.title as "album title", s.title as "song title"
+From Album a
+left join Song s on s.albumid = a.albumid
 
-SELECT COUNT(column_name)
-FROM table_name
-WHERE condition;
+select s.title as "Song Title", al.title as "Album Title", ar.artistname as "artist name"
+from Song s
+left join album al on al.albumid = s.albumid
+left join Artist ar on s.Artistid = ar.Artistid
+where ar.artistname = "ZZTop"
+and al.title like "eliminator"
+
+-- 6. Write a SELECT statement to display how many songs exist for each album. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
+--***Lesley's way***
+SELECT COUNT (AlbumId),AlbumId
+FROM Song
+GROUP BY AlbumId
+
+-- ***Kimmys in class solution***
+select a.title, count() as "total songs"
+from album a
+join song s on s.albumid = a.albumid
+group by s.albumid; 
 
 -- 7. Write a SELECT statement to display how many songs exist for each artist. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
+SELECT ar.artistname, count() as "Total Songs"
+FROM Artist ar
+JOIN song s on s.Artistid = ar.Artistid
+GROUP BY s.Artistid
 
 -- 8. Write a SELECT statement to display how many songs exist for each genre. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
+SELECT g.label, count() as "Total Songs"
+FROM Genre g
+JOIN song s on s.genreId = g.genreId
+GROUP BY s.genreId
+
+-- 9. Using MAX() function, write a select statement to find the album with the longest duration. The result should display the album title and the duration.
+SELECT title, MAX(albumlength) as "duration"
+FROM Album
+
+-- 10. Using MAX() function, write a select statement to find the song with the longest duration. The result should display the song title and the duration.
+select
+
+-- 11. Modify the previous query to also display the title of the album.
+
+
